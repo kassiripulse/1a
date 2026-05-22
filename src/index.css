@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbars for mobile screens inside emulator */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Glowing animations */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite ease-in-out;
+}
+
+/* Beautiful custom active indicators */
+.active-tab {
+  color: #E11D48;
+}
+
+/* Stepper dots vertical connector */
+.stepper-line {
+  position: relative;
+}
+.stepper-line::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: calc(100% - 1.5rem);
+  background-color: #E2E8F0;
+}
+.stepper-line-active::after {
+  background-color: #FF3B30;
+}
+
+/* Safe Area variables */
+:root {
+  --safe-top: 47px;
+  --safe-bottom: 34px;
+}
+
+/* Cart icon shake animation */
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-3px, 0) rotate(-5deg); }
+  20% { transform: translate(3px, 0) rotate(5deg); }
+  30% { transform: translate(-3px, 0) rotate(-5deg); }
+  40% { transform: translate(3px, 0) rotate(5deg); }
+  50% { transform: translate(-2px, 0) rotate(-3deg); }
+  60% { transform: translate(2px, 0) rotate(3deg); }
+  70% { transform: translate(-1px, 0) rotate(-2deg); }
+  80% { transform: translate(1px, 0) rotate(2deg); }
+  90% { transform: translate(-1px, 0) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.animate-shake {
+  animation: shake 0.7s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Custom micro haptic vibrate simulation keyframe for iPhone emulator */
+@keyframes hapticVibrate {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1.5px, 0.5px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-0.5px, 1px); }
+  80% { transform: translate(1px, -0.5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-haptic {
+  animation: hapticVibrate 0.15s ease-in-out;
+}

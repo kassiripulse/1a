@@ -1,0 +1,10 @@
+{
+  "name": "Dodo Livraison",
+  "description": "Application de livraison de repas au Burkina Faso avec tableau de bord d'administration et passerelle de paiement YengaPay.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
