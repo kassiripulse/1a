@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { Restaurant, MenuItem, Order, ClientProfile, OrderStatus } from '../types';
+import { secureStorage } from './secureStorage';
 
 export interface AppConfig {
   supabaseUrl: string;
@@ -115,34 +116,34 @@ interface AppStore {
 }
 
 const DEFAULT_CONFIG: AppConfig = {
-  supabaseUrl: localStorage.getItem('DODO_SUPABASE_URL') || '',
-  supabaseAnonKey: localStorage.getItem('DODO_SUPABASE_ANON_KEY') || '',
-  geminiApiKey: localStorage.getItem('DODO_GEMINI_API_KEY') || '',
-  resendApiKey: localStorage.getItem('DODO_RESEND_API_KEY') || '',
-  brevoSmtpKey: localStorage.getItem('DODO_BREVO_SMTP_KEY') || '',
-  brevoSenderEmail: localStorage.getItem('DODO_BREVO_SENDER_EMAIL') || 'contact@dodo-livraison.bf',
-  baseDeliveryFee: Number(localStorage.getItem('DODO_BASE_DELIVERY_FEE') || '500'),
-  avgPrepTime: localStorage.getItem('DODO_AVG_PREP_TIME') || '20-30 min',
-  walletBalance: Number(localStorage.getItem('DODO_WALLET_BALANCE') || '15500'),
-  appName: localStorage.getItem('DODO_APP_NAME') || 'Dodo Livraison',
-  primaryColor: localStorage.getItem('DODO_PRIMARY_COLOR') || '#E52327',
-  currencySymbol: localStorage.getItem('DODO_CURRENCY_SYMBOL') || 'FCFA',
-  serviceFee: Number(localStorage.getItem('DODO_SERVICE_FEE') || '100'),
-  freeDeliveryThreshold: Number(localStorage.getItem('DODO_FREE_DELIVERY_THRESHOLD') || '15000'),
-  welcomeBanner: localStorage.getItem('DODO_WELCOME_BANNER') || 'Bienvenue sur Dodo Livraison ! Profitez de la livraison de vos maquis préférés à prix mini. 🛵',
-  simulationSpeed: Number(localStorage.getItem('DODO_SIMULATION_SPEED') || '1'),
-  maintenanceMode: localStorage.getItem('DODO_MAINTENANCE_MODE') === 'true',
-  enableGeminiAgent: localStorage.getItem('DODO_ENABLE_GEMINI_AGENT') !== 'false',
-  enableGoogleLogin: localStorage.getItem('DODO_ENABLE_GOOGLE_LOGIN') !== 'false',
-  googleClientId: localStorage.getItem('DODO_GOOGLE_CLIENT_ID') || '987654321-googleclientid.apps.googleusercontent.com',
-  enableAppleLogin: localStorage.getItem('DODO_ENABLE_APPLE_LOGIN') !== 'false',
-  appleClientId: localStorage.getItem('DODO_APPLE_CLIENT_ID') || 'com.dodo.livraison.appleid',
-  memberDaysEnabled: localStorage.getItem('DODO_MEMBER_DAYS_ENABLED') !== 'false',
-  memberDaysTitle: localStorage.getItem('DODO_MEMBER_DAYS_TITLE') || 'Member Days',
-  memberDaysSubtitle: localStorage.getItem('DODO_MEMBER_DAYS_SUBTITLE') || "Les plus belles offres sont disponibles jusqu'au 24 mai.",
-  memberDaysButtonText: localStorage.getItem('DODO_MEMBER_DAYS_BUTTON_TEXT') || 'Voir les offres',
-  memberDaysImageUrl: localStorage.getItem('DODO_MEMBER_DAYS_IMAGE_URL') || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&auto=format&fit=crop&q=80',
-  memberDaysBadgeText: localStorage.getItem('DODO_MEMBER_DAYS_BADGE_TEXT') || 'EXCLUSIF 🇧🇫',
+  supabaseUrl: secureStorage.getItem('DODO_SUPABASE_URL') || '',
+  supabaseAnonKey: secureStorage.getItem('DODO_SUPABASE_ANON_KEY') || '',
+  geminiApiKey: secureStorage.getItem('DODO_GEMINI_API_KEY') || '',
+  resendApiKey: secureStorage.getItem('DODO_RESEND_API_KEY') || '',
+  brevoSmtpKey: secureStorage.getItem('DODO_BREVO_SMTP_KEY') || '',
+  brevoSenderEmail: secureStorage.getItem('DODO_BREVO_SENDER_EMAIL') || 'contact@dodo-livraison.bf',
+  baseDeliveryFee: Number(secureStorage.getItem('DODO_BASE_DELIVERY_FEE') || '500'),
+  avgPrepTime: secureStorage.getItem('DODO_AVG_PREP_TIME') || '20-30 min',
+  walletBalance: Number(secureStorage.getItem('DODO_WALLET_BALANCE') || '15500'),
+  appName: secureStorage.getItem('DODO_APP_NAME') || 'Dodo Livraison',
+  primaryColor: secureStorage.getItem('DODO_PRIMARY_COLOR') || '#E52327',
+  currencySymbol: secureStorage.getItem('DODO_CURRENCY_SYMBOL') || 'FCFA',
+  serviceFee: Number(secureStorage.getItem('DODO_SERVICE_FEE') || '100'),
+  freeDeliveryThreshold: Number(secureStorage.getItem('DODO_FREE_DELIVERY_THRESHOLD') || '15000'),
+  welcomeBanner: secureStorage.getItem('DODO_WELCOME_BANNER') || 'Bienvenue sur Dodo Livraison ! Profitez de la livraison de vos maquis préférés à prix mini. 🛵',
+  simulationSpeed: Number(secureStorage.getItem('DODO_SIMULATION_SPEED') || '1'),
+  maintenanceMode: secureStorage.getItem('DODO_MAINTENANCE_MODE') === 'true',
+  enableGeminiAgent: secureStorage.getItem('DODO_ENABLE_GEMINI_AGENT') !== 'false',
+  enableGoogleLogin: secureStorage.getItem('DODO_ENABLE_GOOGLE_LOGIN') !== 'false',
+  googleClientId: secureStorage.getItem('DODO_GOOGLE_CLIENT_ID') || '987654321-googleclientid.apps.googleusercontent.com',
+  enableAppleLogin: secureStorage.getItem('DODO_ENABLE_APPLE_LOGIN') !== 'false',
+  appleClientId: secureStorage.getItem('DODO_APPLE_CLIENT_ID') || 'com.dodo.livraison.appleid',
+  memberDaysEnabled: secureStorage.getItem('DODO_MEMBER_DAYS_ENABLED') !== 'false',
+  memberDaysTitle: secureStorage.getItem('DODO_MEMBER_DAYS_TITLE') || 'Member Days',
+  memberDaysSubtitle: secureStorage.getItem('DODO_MEMBER_DAYS_SUBTITLE') || "Les plus belles offres sont disponibles jusqu'au 24 mai.",
+  memberDaysButtonText: secureStorage.getItem('DODO_MEMBER_DAYS_BUTTON_TEXT') || 'Voir les offres',
+  memberDaysImageUrl: secureStorage.getItem('DODO_MEMBER_DAYS_IMAGE_URL') || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&auto=format&fit=crop&q=80',
+  memberDaysBadgeText: secureStorage.getItem('DODO_MEMBER_DAYS_BADGE_TEXT') || 'EXCLUSIF 🇧🇫',
 };
 
 export const useAppStore = create<AppStore>((set) => ({
@@ -151,67 +152,67 @@ export const useAppStore = create<AppStore>((set) => ({
   updateConfig: (updates) => set((state) => {
     const nextConfig = { ...state.config, ...updates };
     
-    // Persist each modified value to localStorage
-    if (updates.supabaseUrl !== undefined) localStorage.setItem('DODO_SUPABASE_URL', updates.supabaseUrl);
-    if (updates.supabaseAnonKey !== undefined) localStorage.setItem('DODO_SUPABASE_ANON_KEY', updates.supabaseAnonKey);
-    if (updates.geminiApiKey !== undefined) localStorage.setItem('DODO_GEMINI_API_KEY', updates.geminiApiKey);
-    if (updates.resendApiKey !== undefined) localStorage.setItem('DODO_RESEND_API_KEY', updates.resendApiKey);
-    if (updates.brevoSmtpKey !== undefined) localStorage.setItem('DODO_BREVO_SMTP_KEY', updates.brevoSmtpKey);
-    if (updates.brevoSenderEmail !== undefined) localStorage.setItem('DODO_BREVO_SENDER_EMAIL', updates.brevoSenderEmail);
-    if (updates.baseDeliveryFee !== undefined) localStorage.setItem('DODO_BASE_DELIVERY_FEE', updates.baseDeliveryFee.toString());
-    if (updates.avgPrepTime !== undefined) localStorage.setItem('DODO_AVG_PREP_TIME', updates.avgPrepTime);
-    if (updates.walletBalance !== undefined) localStorage.setItem('DODO_WALLET_BALANCE', updates.walletBalance.toString());
-    if (updates.appName !== undefined) localStorage.setItem('DODO_APP_NAME', updates.appName);
-    if (updates.primaryColor !== undefined) localStorage.setItem('DODO_PRIMARY_COLOR', updates.primaryColor);
-    if (updates.currencySymbol !== undefined) localStorage.setItem('DODO_CURRENCY_SYMBOL', updates.currencySymbol);
-    if (updates.serviceFee !== undefined) localStorage.setItem('DODO_SERVICE_FEE', updates.serviceFee.toString());
-    if (updates.freeDeliveryThreshold !== undefined) localStorage.setItem('DODO_FREE_DELIVERY_THRESHOLD', updates.freeDeliveryThreshold.toString());
-    if (updates.welcomeBanner !== undefined) localStorage.setItem('DODO_WELCOME_BANNER', updates.welcomeBanner);
-    if (updates.simulationSpeed !== undefined) localStorage.setItem('DODO_SIMULATION_SPEED', updates.simulationSpeed.toString());
-    if (updates.maintenanceMode !== undefined) localStorage.setItem('DODO_MAINTENANCE_MODE', updates.maintenanceMode ? 'true' : 'false');
-    if (updates.enableGeminiAgent !== undefined) localStorage.setItem('DODO_ENABLE_GEMINI_AGENT', updates.enableGeminiAgent ? 'true' : 'false');
-    if (updates.enableGoogleLogin !== undefined) localStorage.setItem('DODO_ENABLE_GOOGLE_LOGIN', updates.enableGoogleLogin ? 'true' : 'false');
-    if (updates.googleClientId !== undefined) localStorage.setItem('DODO_GOOGLE_CLIENT_ID', updates.googleClientId);
-    if (updates.enableAppleLogin !== undefined) localStorage.setItem('DODO_ENABLE_APPLE_LOGIN', updates.enableAppleLogin ? 'true' : 'false');
-    if (updates.appleClientId !== undefined) localStorage.setItem('DODO_APPLE_CLIENT_ID', updates.appleClientId);
-    if (updates.memberDaysEnabled !== undefined) localStorage.setItem('DODO_MEMBER_DAYS_ENABLED', updates.memberDaysEnabled ? 'true' : 'false');
-    if (updates.memberDaysTitle !== undefined) localStorage.setItem('DODO_MEMBER_DAYS_TITLE', updates.memberDaysTitle);
-    if (updates.memberDaysSubtitle !== undefined) localStorage.setItem('DODO_MEMBER_DAYS_SUBTITLE', updates.memberDaysSubtitle);
-    if (updates.memberDaysButtonText !== undefined) localStorage.setItem('DODO_MEMBER_DAYS_BUTTON_TEXT', updates.memberDaysButtonText);
-    if (updates.memberDaysImageUrl !== undefined) localStorage.setItem('DODO_MEMBER_DAYS_IMAGE_URL', updates.memberDaysImageUrl);
-    if (updates.memberDaysBadgeText !== undefined) localStorage.setItem('DODO_MEMBER_DAYS_BADGE_TEXT', updates.memberDaysBadgeText);
+    // Persist each modified value to secureStorage
+    if (updates.supabaseUrl !== undefined) secureStorage.setItem('DODO_SUPABASE_URL', updates.supabaseUrl);
+    if (updates.supabaseAnonKey !== undefined) secureStorage.setItem('DODO_SUPABASE_ANON_KEY', updates.supabaseAnonKey);
+    if (updates.geminiApiKey !== undefined) secureStorage.setItem('DODO_GEMINI_API_KEY', updates.geminiApiKey);
+    if (updates.resendApiKey !== undefined) secureStorage.setItem('DODO_RESEND_API_KEY', updates.resendApiKey);
+    if (updates.brevoSmtpKey !== undefined) secureStorage.setItem('DODO_BREVO_SMTP_KEY', updates.brevoSmtpKey);
+    if (updates.brevoSenderEmail !== undefined) secureStorage.setItem('DODO_BREVO_SENDER_EMAIL', updates.brevoSenderEmail);
+    if (updates.baseDeliveryFee !== undefined) secureStorage.setItem('DODO_BASE_DELIVERY_FEE', updates.baseDeliveryFee.toString());
+    if (updates.avgPrepTime !== undefined) secureStorage.setItem('DODO_AVG_PREP_TIME', updates.avgPrepTime);
+    if (updates.walletBalance !== undefined) secureStorage.setItem('DODO_WALLET_BALANCE', updates.walletBalance.toString());
+    if (updates.appName !== undefined) secureStorage.setItem('DODO_APP_NAME', updates.appName);
+    if (updates.primaryColor !== undefined) secureStorage.setItem('DODO_PRIMARY_COLOR', updates.primaryColor);
+    if (updates.currencySymbol !== undefined) secureStorage.setItem('DODO_CURRENCY_SYMBOL', updates.currencySymbol);
+    if (updates.serviceFee !== undefined) secureStorage.setItem('DODO_SERVICE_FEE', updates.serviceFee.toString());
+    if (updates.freeDeliveryThreshold !== undefined) secureStorage.setItem('DODO_FREE_DELIVERY_THRESHOLD', updates.freeDeliveryThreshold.toString());
+    if (updates.welcomeBanner !== undefined) secureStorage.setItem('DODO_WELCOME_BANNER', updates.welcomeBanner);
+    if (updates.simulationSpeed !== undefined) secureStorage.setItem('DODO_SIMULATION_SPEED', updates.simulationSpeed.toString());
+    if (updates.maintenanceMode !== undefined) secureStorage.setItem('DODO_MAINTENANCE_MODE', updates.maintenanceMode ? 'true' : 'false');
+    if (updates.enableGeminiAgent !== undefined) secureStorage.setItem('DODO_ENABLE_GEMINI_AGENT', updates.enableGeminiAgent ? 'true' : 'false');
+    if (updates.enableGoogleLogin !== undefined) secureStorage.setItem('DODO_ENABLE_GOOGLE_LOGIN', updates.enableGoogleLogin ? 'true' : 'false');
+    if (updates.googleClientId !== undefined) secureStorage.setItem('DODO_GOOGLE_CLIENT_ID', updates.googleClientId);
+    if (updates.enableAppleLogin !== undefined) secureStorage.setItem('DODO_ENABLE_APPLE_LOGIN', updates.enableAppleLogin ? 'true' : 'false');
+    if (updates.appleClientId !== undefined) secureStorage.setItem('DODO_APPLE_CLIENT_ID', updates.appleClientId);
+    if (updates.memberDaysEnabled !== undefined) secureStorage.setItem('DODO_MEMBER_DAYS_ENABLED', updates.memberDaysEnabled ? 'true' : 'false');
+    if (updates.memberDaysTitle !== undefined) secureStorage.setItem('DODO_MEMBER_DAYS_TITLE', updates.memberDaysTitle);
+    if (updates.memberDaysSubtitle !== undefined) secureStorage.setItem('DODO_MEMBER_DAYS_SUBTITLE', updates.memberDaysSubtitle);
+    if (updates.memberDaysButtonText !== undefined) secureStorage.setItem('DODO_MEMBER_DAYS_BUTTON_TEXT', updates.memberDaysButtonText);
+    if (updates.memberDaysImageUrl !== undefined) secureStorage.setItem('DODO_MEMBER_DAYS_IMAGE_URL', updates.memberDaysImageUrl);
+    if (updates.memberDaysBadgeText !== undefined) secureStorage.setItem('DODO_MEMBER_DAYS_BADGE_TEXT', updates.memberDaysBadgeText);
 
     return { config: nextConfig };
   }),
   resetConfig: () => {
-    localStorage.removeItem('DODO_SUPABASE_URL');
-    localStorage.removeItem('DODO_SUPABASE_ANON_KEY');
-    localStorage.removeItem('DODO_GEMINI_API_KEY');
-    localStorage.removeItem('DODO_RESEND_API_KEY');
-    localStorage.removeItem('DODO_BREVO_SMTP_KEY');
-    localStorage.removeItem('DODO_BREVO_SENDER_EMAIL');
-    localStorage.removeItem('DODO_BASE_DELIVERY_FEE');
-    localStorage.removeItem('DODO_AVG_PREP_TIME');
-    localStorage.removeItem('DODO_WALLET_BALANCE');
-    localStorage.removeItem('DODO_APP_NAME');
-    localStorage.removeItem('DODO_PRIMARY_COLOR');
-    localStorage.removeItem('DODO_CURRENCY_SYMBOL');
-    localStorage.removeItem('DODO_SERVICE_FEE');
-    localStorage.removeItem('DODO_FREE_DELIVERY_THRESHOLD');
-    localStorage.removeItem('DODO_WELCOME_BANNER');
-    localStorage.removeItem('DODO_SIMULATION_SPEED');
-    localStorage.removeItem('DODO_MAINTENANCE_MODE');
-    localStorage.removeItem('DODO_ENABLE_GEMINI_AGENT');
-    localStorage.removeItem('DODO_ENABLE_GOOGLE_LOGIN');
-    localStorage.removeItem('DODO_GOOGLE_CLIENT_ID');
-    localStorage.removeItem('DODO_ENABLE_APPLE_LOGIN');
-    localStorage.removeItem('DODO_APPLE_CLIENT_ID');
-    localStorage.removeItem('DODO_MEMBER_DAYS_ENABLED');
-    localStorage.removeItem('DODO_MEMBER_DAYS_TITLE');
-    localStorage.removeItem('DODO_MEMBER_DAYS_SUBTITLE');
-    localStorage.removeItem('DODO_MEMBER_DAYS_BUTTON_TEXT');
-    localStorage.removeItem('DODO_MEMBER_DAYS_IMAGE_URL');
-    localStorage.removeItem('DODO_MEMBER_DAYS_BADGE_TEXT');
+    secureStorage.removeItem('DODO_SUPABASE_URL');
+    secureStorage.removeItem('DODO_SUPABASE_ANON_KEY');
+    secureStorage.removeItem('DODO_GEMINI_API_KEY');
+    secureStorage.removeItem('DODO_RESEND_API_KEY');
+    secureStorage.removeItem('DODO_BREVO_SMTP_KEY');
+    secureStorage.removeItem('DODO_BREVO_SENDER_EMAIL');
+    secureStorage.removeItem('DODO_BASE_DELIVERY_FEE');
+    secureStorage.removeItem('DODO_AVG_PREP_TIME');
+    secureStorage.removeItem('DODO_WALLET_BALANCE');
+    secureStorage.removeItem('DODO_APP_NAME');
+    secureStorage.removeItem('DODO_PRIMARY_COLOR');
+    secureStorage.removeItem('DODO_CURRENCY_SYMBOL');
+    secureStorage.removeItem('DODO_SERVICE_FEE');
+    secureStorage.removeItem('DODO_FREE_DELIVERY_THRESHOLD');
+    secureStorage.removeItem('DODO_WELCOME_BANNER');
+    secureStorage.removeItem('DODO_SIMULATION_SPEED');
+    secureStorage.removeItem('DODO_MAINTENANCE_MODE');
+    secureStorage.removeItem('DODO_ENABLE_GEMINI_AGENT');
+    secureStorage.removeItem('DODO_ENABLE_GOOGLE_LOGIN');
+    secureStorage.removeItem('DODO_GOOGLE_CLIENT_ID');
+    secureStorage.removeItem('DODO_ENABLE_APPLE_LOGIN');
+    secureStorage.removeItem('DODO_APPLE_CLIENT_ID');
+    secureStorage.removeItem('DODO_MEMBER_DAYS_ENABLED');
+    secureStorage.removeItem('DODO_MEMBER_DAYS_TITLE');
+    secureStorage.removeItem('DODO_MEMBER_DAYS_SUBTITLE');
+    secureStorage.removeItem('DODO_MEMBER_DAYS_BUTTON_TEXT');
+    secureStorage.removeItem('DODO_MEMBER_DAYS_IMAGE_URL');
+    secureStorage.removeItem('DODO_MEMBER_DAYS_BADGE_TEXT');
     
     set({
       config: {

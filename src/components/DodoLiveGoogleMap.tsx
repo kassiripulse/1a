@@ -5,6 +5,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { APIProvider, Map, AdvancedMarker, Pin, useMap } from '@vis.gl/react-google-maps';
+import { secureStorage } from '../lib/secureStorage';
 
 // Natively handles Polyline for real Google Maps if APIProvider is loaded
 function GoogleMapPolyline({ path, strokeColor = '#059669', strokeWidth = 5 }: { path: Array<{ lat: number; lng: number }>; strokeColor?: string; strokeWidth?: number }) {
@@ -45,11 +46,11 @@ export default function DodoLiveGoogleMap({
   showFullRouteTracing = false,
 }: DodoLiveGoogleMapProps) {
   
-  // Read key from process.env, Vite public, or LocalStorage
+  // Read key from process.env, Vite public, or secureStorage
   const API_KEY =
     process.env.GOOGLE_MAPS_PLATFORM_KEY ||
     (import.meta as any).env?.VITE_GOOGLE_MAPS_PLATFORM_KEY ||
-    localStorage.getItem('GOOGLE_MAPS_PLATFORM_KEY') ||
+    secureStorage.getItem('GOOGLE_MAPS_PLATFORM_KEY') ||
     '';
 
   const hasValidKey = Boolean(API_KEY) && API_KEY !== 'YOUR_API_KEY';

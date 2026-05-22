@@ -8,6 +8,7 @@ import {
   Database, Code, Cpu, ExternalLink, RefreshCw, Key, Check, Info, Settings, Trash2, Rocket, Globe
 } from 'lucide-react';
 import { SUPABASE_SQL_SCHEMA, isSupabaseConfigured } from '../lib/supabase';
+import { secureStorage } from '../lib/secureStorage';
 import { Order, Restaurant } from '../types';
 import DodoLogo from './DodoLogo';
 
@@ -43,11 +44,11 @@ export default function DevDashboard({
   onRefreshOrders,
 }: DevDashboardProps) {
   const [copiedSql, setCopiedSql] = useState<boolean>(false);
-  const [supabaseUrlInput, setSupabaseUrlInput] = useState<string>(() => localStorage.getItem('DODO_SUPABASE_URL') || '');
-  const [supabaseAnonKeyInput, setSupabaseAnonKeyInput] = useState<string>(() => localStorage.getItem('DODO_SUPABASE_ANON_KEY') || '');
+  const [supabaseUrlInput, setSupabaseUrlInput] = useState<string>(() => secureStorage.getItem('DODO_SUPABASE_URL') || '');
+  const [supabaseAnonKeyInput, setSupabaseAnonKeyInput] = useState<string>(() => secureStorage.getItem('DODO_SUPABASE_ANON_KEY') || '');
   const [isSuccessSave, setIsSuccessSave] = useState<boolean>(false);
 
-  const [mapsKeyInput, setMapsKeyInput] = useState<string>(() => localStorage.getItem('GOOGLE_MAPS_PLATFORM_KEY') || '');
+  const [mapsKeyInput, setMapsKeyInput] = useState<string>(() => secureStorage.getItem('GOOGLE_MAPS_PLATFORM_KEY') || '');
   const [isSuccessSaveMaps, setIsSuccessSaveMaps] = useState<boolean>(false);
 
   const copyToClipboard = () => {
@@ -58,8 +59,8 @@ export default function DevDashboard({
 
   const handleSaveKeys = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('DODO_SUPABASE_URL', supabaseUrlInput.trim());
-    localStorage.setItem('DODO_SUPABASE_ANON_KEY', supabaseAnonKeyInput.trim());
+    secureStorage.setItem('DODO_SUPABASE_URL', supabaseUrlInput.trim());
+    secureStorage.setItem('DODO_SUPABASE_ANON_KEY', supabaseAnonKeyInput.trim());
     setIsSuccessSave(true);
     if (onRefreshOrders) {
       onRefreshOrders();
@@ -71,8 +72,8 @@ export default function DevDashboard({
   };
 
   const handleClearKeys = () => {
-    localStorage.removeItem('DODO_SUPABASE_URL');
-    localStorage.removeItem('DODO_SUPABASE_ANON_KEY');
+    secureStorage.removeItem('DODO_SUPABASE_URL');
+    secureStorage.removeItem('DODO_SUPABASE_ANON_KEY');
     setSupabaseUrlInput('');
     setSupabaseAnonKeyInput('');
     window.location.reload();
@@ -80,7 +81,7 @@ export default function DevDashboard({
 
   const handleSaveMapsKey = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('GOOGLE_MAPS_PLATFORM_KEY', mapsKeyInput.trim());
+    secureStorage.setItem('GOOGLE_MAPS_PLATFORM_KEY', mapsKeyInput.trim());
     setIsSuccessSaveMaps(true);
     setTimeout(() => {
       setIsSuccessSaveMaps(false);
@@ -89,13 +90,13 @@ export default function DevDashboard({
   };
 
   const handleClearMapsKey = () => {
-    localStorage.removeItem('GOOGLE_MAPS_PLATFORM_KEY');
+    secureStorage.removeItem('GOOGLE_MAPS_PLATFORM_KEY');
     setMapsKeyInput('');
     window.location.reload();
   };
 
   const isConfigured = isSupabaseConfigured();
-  const isMapsConfigured = !!(process.env.GOOGLE_MAPS_PLATFORM_KEY || localStorage.getItem('GOOGLE_MAPS_PLATFORM_KEY'));
+  const isMapsConfigured = !!(process.env.GOOGLE_MAPS_PLATFORM_KEY || secureStorage.getItem('GOOGLE_MAPS_PLATFORM_KEY'));
 
   return (
     <div className="flex-1 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col space-y-6 overflow-y-auto max-h-[844px] no-scrollbar text-gray-300 font-sans text-xs">

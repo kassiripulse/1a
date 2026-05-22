@@ -5,11 +5,12 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { Restaurant, MenuItem, Order, ClientProfile, OrderStatus, MOCK_RESTAURANTS, MOCK_MENU_ITEMS, MOCK_PAST_ORDERS, MOCK_PROFILE } from '../types';
+import { secureStorage } from './secureStorage';
 
-// Let's allow dynamic Supabase config from localStorage so that the user can test their real Supabase right in the browser!
+// Let's allow dynamic Supabase config from secureStorage so that the user can test their real Supabase right in the browser!
 const getSupabaseConfig = () => {
-  const url = localStorage.getItem('DODO_SUPABASE_URL') || (import.meta as any).env?.VITE_SUPABASE_URL || '';
-  const key = localStorage.getItem('DODO_SUPABASE_ANON_KEY') || (import.meta as any).env?.VITE_SUPABASE_ANON_KEY || '';
+  const url = secureStorage.getItem('DODO_SUPABASE_URL') || (import.meta as any).env?.VITE_SUPABASE_URL || '';
+  const key = secureStorage.getItem('DODO_SUPABASE_ANON_KEY') || (import.meta as any).env?.VITE_SUPABASE_ANON_KEY || '';
   return { url, key };
 };
 
